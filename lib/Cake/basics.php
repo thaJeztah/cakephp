@@ -194,10 +194,11 @@ if (!function_exists('h')) {
 				$defaultCharset = 'UTF-8';
 			}
 		}
-		if (is_string($double)) {
+		if (null === $charset && is_string($double)) {
 			$charset = $double;
+			$double  = true;
 		}
-		return htmlspecialchars($text, ENT_QUOTES, ($charset) ? $charset : $defaultCharset, $double);
+		return htmlspecialchars($text, ENT_QUOTES, ($charset) ? $charset : $defaultCharset, (bool)$double);
 	}
 
 }
